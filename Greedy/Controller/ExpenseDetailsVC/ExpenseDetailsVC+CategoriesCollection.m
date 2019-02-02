@@ -12,6 +12,8 @@
 @implementation ExpenseDetailsVC (CategoriesCollection)
 
 - (void)showCategoriesCollection {
+    if (self.pickingCategory)
+        return;
     [self setPickingCategory:true];
     CGFloat collectionY = self.cardView.frame.size.height - 75;
     BOOL needToMoveUp = true;
