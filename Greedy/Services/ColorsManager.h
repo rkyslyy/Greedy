@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ColorsManager : NSObject
 
-+ (NSArray <UIColor*> *)    getAllColors;
-+ (NSArray <UIColor*> *)    getFreeColors;
-+ (NSArray <NSNumber*> *)   getFreeColorsIndexes;
++ (NSArray <UIColor *> *)   getAllColors;
++ (NSArray <UIColor *> *)   getFreeColors;
++ (NSArray <NSNumber *> *)  getFreeColorsIndexes;
 
 @end
 

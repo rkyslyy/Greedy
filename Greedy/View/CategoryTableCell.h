@@ -15,14 +15,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoryTableCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIView*        iconView;
-@property (weak, nonatomic) IBOutlet UIImageView*   iconImage;
-@property (weak, nonatomic) IBOutlet UILabel*       categoryTitle;
-@property (weak, nonatomic) IBOutlet UIButton*      plusButton;
-@property (strong, nonatomic)        NSString*      category;
-@property (strong, nonatomic)        ExpensesVC*    parent;
+// Outlets
+@property (weak, nonatomic) IBOutlet UIView      *iconView;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
+@property (weak, nonatomic) IBOutlet UILabel     *categoryTitle;
+@property (weak, nonatomic) IBOutlet UIButton    *plusButton;
+//
+@property (strong, nonatomic)        NSString    *category;
+@property (strong, nonatomic)        ExpensesVC  *parent;
 
-- (void) setupButton;
+- (void)setupButton;
 
 @end
 

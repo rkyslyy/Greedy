@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ExpenseDetailsVC (FrameManipulations)
 
-- (void) makeCardViewTaller;
-- (void) makeCardViewShorter;
-- (void) hideKeyboardAndMoveDown:(nullable UITapGestureRecognizer*)tap;
+- (void)makeCardViewTaller;
+- (void)makeCardViewShorter;
+- (void)hideKeyboardAndMoveDown:(nullable UITapGestureRecognizer *)tap;
 
 @end
 

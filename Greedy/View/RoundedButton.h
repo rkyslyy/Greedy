@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
 @interface RoundedButton : UIButton
 
-@property (assign, nonatomic) IBInspectable CGFloat     borderWidth;
-@property (assign, nonatomic) IBInspectable UIColor*    borderColor;
+@property (assign, nonatomic) IBInspectable UIColor *borderColor;
+@property (assign, nonatomic) IBInspectable CGFloat borderWidth;
 
 @end
 

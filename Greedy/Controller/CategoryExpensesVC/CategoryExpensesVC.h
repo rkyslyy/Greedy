@@ -16,19 +16,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoryExpensesVC : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIView*            headerView;
-@property (weak, nonatomic) IBOutlet UIButton*          backButton;
-@property (weak, nonatomic) IBOutlet UIButton*          editButton;
-@property (weak, nonatomic) IBOutlet UIImageView*       categoryIcon;
-@property (weak, nonatomic) IBOutlet UILabel*           categoryTitle;
-@property (weak, nonatomic) IBOutlet UILabel*           categoryTotal;
-@property (weak, nonatomic) IBOutlet UITableView*       expensesTable;
-
-@property (strong, nonatomic)        Category*          selectedCategory;
-
+// Outlets
+@property (weak, nonatomic) IBOutlet UIView             *headerView;
+@property (weak, nonatomic) IBOutlet UIButton           *backButton;
+@property (weak, nonatomic) IBOutlet UIButton           *editButton;
+@property (weak, nonatomic) IBOutlet UIImageView        *categoryIcon;
+@property (weak, nonatomic) IBOutlet UILabel            *categoryTitle;
+@property (weak, nonatomic) IBOutlet UILabel            *categoryTotal;
+@property (weak, nonatomic) IBOutlet UITableView        *expensesTable;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *iconHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *iconWidthConstraint;
-
+//
+@property (strong, nonatomic)        Category           *selectedCategory;
 
 - (void) dismissSelf;
 

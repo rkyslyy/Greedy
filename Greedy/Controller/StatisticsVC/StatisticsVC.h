@@ -22,21 +22,22 @@ typedef enum {
 
 @interface StatisticsVC : UIViewController
 
-@property (weak, nonatomic) IBOutlet    UIButton*               showTotal;
-@property (weak, nonatomic) IBOutlet    UIButton*               showMonth;
-@property (weak, nonatomic) IBOutlet    UIButton*               showToday;
-@property (weak, nonatomic) IBOutlet    UILabel*                categoryName;
-@property (weak, nonatomic) IBOutlet    UILabel*                categoryTotal;
-@property (weak, nonatomic) IBOutlet    XYPieChart*             pieChart;
-@property (weak, nonatomic) IBOutlet    UITableView*            categoriesTable;
+// Outlets
+@property (weak, nonatomic) IBOutlet UIButton               *showTotal;
+@property (weak, nonatomic) IBOutlet UIButton               *showMonth;
+@property (weak, nonatomic) IBOutlet UIButton               *showToday;
+@property (weak, nonatomic) IBOutlet UILabel                *categoryName;
+@property (weak, nonatomic) IBOutlet UILabel                *categoryTotal;
+@property (weak, nonatomic) IBOutlet XYPieChart             *pieChart;
+@property (weak, nonatomic) IBOutlet UITableView            *categoriesTable;
+//
+@property (strong, nonatomic)        UIView                 *noExpensesLabel;
+@property (strong, nonatomic)        NSArray <Category *>   *categories;
+@property (assign, nonatomic)        NSInteger              selectedSliceIndex;
+@property (assign, nonatomic)        DateType               selectedDateOption;
+@property (assign, nonatomic)        float                  total;
 
-@property (strong, nonatomic)           NSArray <Category*>*    categories;
-@property (assign, nonatomic)           float                   total;
-@property (strong, nonatomic)           UIView*                 noExpensesLabel;
-@property (assign, nonatomic)           NSInteger               selectedSliceIndex;
-@property (assign, nonatomic)           DateType                selectedDateOption;
-
-- (NSMutableAttributedString*)getTotalString:(nullable Category*)cat;
+- (NSMutableAttributedString *)getTotalString:(nullable Category *)cat;
 
 @end
 

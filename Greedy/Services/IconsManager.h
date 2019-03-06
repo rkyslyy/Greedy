@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IconsManager : NSObject
 
-+ (UIImage*)                getIconForIndex:(NSInteger)index;
-+ (NSArray <UIImage*>*)     getFreeIcons;
-+ (NSArray <NSNumber*>*)    getFreeIconsIndexes;
++ (UIImage *)               getIconForIndex:(NSInteger)index;
++ (NSArray <UIImage *> *)   getFreeIcons;
++ (NSArray <NSNumber *> *)  getFreeIconsIndexes;
 
 @end
 

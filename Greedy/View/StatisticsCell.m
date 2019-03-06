@@ -12,8 +12,8 @@
 
 @implementation StatisticsCell
 
-- (void)paintSelfWithColor:(UIColor*)color {
-    [self.iconView setBackgroundColor:color];
+- (void)paintSelfWithColor:(UIColor *)color {
+  [self.iconView setBackgroundColor:color];
 }
 
 @end

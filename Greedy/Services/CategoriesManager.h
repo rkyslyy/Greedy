@@ -19,16 +19,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoriesManager : NSObject
 
-+ (NSArray <Category*> *)   getAllCategories;
-+ (NSArray <Category*> *)   getAllNonZeroCategories;
-+ (NSArray <Category*> *)   getMonthNonZeroCategories;
-+ (NSArray <Category*> *)   getTodayNonZeroCategories;
-+ (nullable Category*)      getCategoryByName:(NSString*)name;
++ (NSArray <Category *> *)  getAllCategories;
++ (NSArray <Category *> *)  getAllNonZeroCategories;
++ (NSArray <Category *> *)  getMonthNonZeroCategories;
++ (NSArray <Category *> *)  getTodayNonZeroCategories;
++ (nullable Category *)     getCategoryByName:(NSString *)name;
 + (void)                    createDefaultCategories;
-+ (void)                    createNewCategoryWithName:(NSString*)title
-                                                color:(NSInteger)colorIndex
++ (void)                    createNewCategoryWithName:(NSString *)title
+																								color:(NSInteger)colorIndex
                                               andIcon:(NSInteger)iconIndex;
-+ (void)                    delete:(Category*)category;
++ (void)                    delete:(Category *)category;
 + (void)                    deleteAllCategories;
 
 @end

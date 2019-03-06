@@ -12,7 +12,7 @@
 
 @interface CategoryExpensesVC ()
 
-@property (strong, nonatomic) UIRefreshControl* refreshControl;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -20,20 +20,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.backButton addTarget:self action:@selector(dismissSelf)
+    [self.backButton addTarget:self
+                        action:@selector(dismissSelf)
               forControlEvents:UIControlEventTouchUpInside];
     [self paintSelf];
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = UIColor.clearColor;
     self.refreshControl.tintColor = UIColor.clearColor;
-    UIView* refreshView = [[NSBundle.mainBundle loadNibNamed:@"RefreshControlXIB" owner:self options:nil] objectAtIndex:0];
+    UIView *refreshView = [[NSBundle.mainBundle loadNibNamed:@"RefreshControlXIB"
+                                                       owner:self
+                                                     options:nil] objectAtIndex:0];
     refreshView.frame = self.refreshControl.bounds;
     [self.refreshControl addSubview:refreshView];
-    [self.refreshControl addTarget:self action:@selector(createNewExpense) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self
+                            action:@selector(createNewExpense)
+                  forControlEvents:UIControlEventValueChanged];
     [self.expensesTable addSubview:self.refreshControl];
-    [self.editButton addTarget:self action:@selector(editCategory) forControlEvents:UIControlEventTouchUpInside];
-    
+    [self.editButton addTarget:self action:@selector(editCategory)
+              forControlEvents:UIControlEventTouchUpInside];
     if (self.view.frame.size.width <= 375) {
         [self.iconWidthConstraint setConstant:30];
         [self.iconHeightConstraint setConstant:30];
@@ -52,7 +56,6 @@
                                   (size.height - height)/2.0f,
                                   width,
                                   height);
-    
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     [image drawInRect:imageRect];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -70,53 +73,63 @@
     [self.presentingViewController dismissViewControllerAnimated:false completion:nil];
 }
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    NSArray <Expense*>* expensesOfCategory = [ExpensesManager getAllExpensesOfCategory:self.categoryTitle.text];
-    expensesOfCategory = [expensesOfCategory sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-        NSDate* one = ((Expense*)obj1).date;
-        NSDate* two = ((Expense*)obj2).date;
-        return [one compare:two] != NSOrderedDescending;
-    }];
-    Expense * expense = [expensesOfCategory objectAtIndex:indexPath.row];
-    ExpenseCell * cell = [tableView dequeueReusableCellWithIdentifier:@"expenseCell"];
-    cell.title.text = expense.title;
-    cell.date.text = [NSDateFormatter localizedStringFromDate:expense.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
-    cell.cost.text = [[[[NSNumber numberWithFloat:expense.cost] stringValue] stringByAppendingString:@" UAH"] stringByReplacingOccurrencesOfString:@"." withString:@","];
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
+                 cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    NSArray <Expense *> *expensesOfCategory = [ExpensesManager
+                                               getAllExpensesOfCategory:self.categoryTitle.text];
+  expensesOfCategory = [expensesOfCategory
+                        sortedArrayUsingComparator:
+                        ^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                          NSDate *one = ((Expense *)obj1).date;
+                          NSDate *two = ((Expense *)obj2).date;
+                          return [one compare:two] != NSOrderedDescending;
+                        }];
+  Expense *expense = [expensesOfCategory objectAtIndex:indexPath.row];
+  ExpenseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"expenseCell"];
+  cell.title.text = expense.title;
+    cell.date.text = [NSDateFormatter localizedStringFromDate:expense.date
+                                                    dateStyle:NSDateFormatterMediumStyle
+                                                    timeStyle:NSDateFormatterNoStyle];
+    cell.cost.text = [[[[NSNumber numberWithFloat:expense.cost]
+                        stringValue]
+                          stringByAppendingString:@" UAH"]
+                            stringByReplacingOccurrencesOfString:@"." withString:@","];
     [cell paintSelfFor:[CategoriesManager getCategoryByName:expense.category]];
     return cell;
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    Category* category = [CategoriesManager getCategoryByName:self.categoryTitle.text];
+    Category *category = [CategoriesManager getCategoryByName:self.categoryTitle.text];
     return [[ExpensesManager getAllExpensesOfCategory:category.title] count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray <Expense*>* expensesOfCategory = [ExpensesManager getAllExpensesOfCategory:self.categoryTitle.text];
-    Expense * expense = [expensesOfCategory objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"mySegue" sender:expense];
+    NSArray <Expense *> *expensesOfCategory = [ExpensesManager
+                                               getAllExpensesOfCategory:self.categoryTitle.text];
+    Expense *expense = [expensesOfCategory objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"toExpDetails" sender:expense];
 }
 
 - (void) createNewExpense {
-    Category* category = [CategoriesManager getCategoryByName:self.categoryTitle.text];
-    [self performSegueWithIdentifier:@"mySegue" sender:category];
+    Category *category = [CategoriesManager getCategoryByName:self.categoryTitle.text];
+    [self performSegueWithIdentifier:@"toExpDetails" sender:category];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController isKindOfClass:ExpenseDetailsVC.class]) {
-        ExpenseDetailsVC* details = segue.destinationViewController;
+        ExpenseDetailsVC *details = segue.destinationViewController;
         [details setHidesBottomBarWhenPushed:true];
         details.tableToReload = self.expensesTable;
         if ([sender isKindOfClass:Expense.class]) {
-            Expense* expense = sender;
+            Expense *expense = sender;
             details.selectedExpense = expense;
         } else if ([sender isKindOfClass:Category.class]) {
-            Category* category = sender;
+            Category *category = sender;
             details.selectedCategory = category;
             [self.refreshControl endRefreshing];
         }
     } else if ([segue.destinationViewController isKindOfClass:CategoryDetailsVC.class]) {
-        CategoryDetailsVC* categoryDetails = segue.destinationViewController;
+        CategoryDetailsVC *categoryDetails = segue.destinationViewController;
         categoryDetails.selectedCategory = sender;
         categoryDetails.headerToReload = _headerView;
         categoryDetails.titleToReload = _categoryTitle;
@@ -134,21 +147,25 @@
 }
 
 - (void)recountTotal {
-    Category* category = [CategoriesManager getCategoryByName:self.categoryTitle.text];
-    NSNumber* total = [NSNumber numberWithFloat:[ExpensesManager getTotalCostOf:category]];
+    Category *category = [CategoriesManager getCategoryByName:self.categoryTitle.text];
+    NSNumber *total = [NSNumber numberWithFloat:[ExpensesManager getTotalCostOf:category]];
     self.categoryTotal.text = [[total stringValue] stringByAppendingString:@" UAH"];
 }
 
 - (void) paintSelf {
-    Category* category = self.selectedCategory;
-    UIColor* categoryColor = [[ColorsManager getAllColors] objectAtIndex:category.colorIndex];
-    NSNumber* categoryTotal = [NSNumber numberWithFloat:[ExpensesManager getTotalCostOf:category]];
-    UIImage* categoryIcon = [IconsManager getIconForIndex:category.iconIndex];
+    Category *category = self.selectedCategory;
+    UIColor *categoryColor = [[ColorsManager getAllColors] objectAtIndex:category.colorIndex];
+    NSNumber *categoryTotal = [NSNumber numberWithFloat:[ExpensesManager getTotalCostOf:category]];
+    UIImage *categoryIcon = [IconsManager getIconForIndex:category.iconIndex];
     [self.headerView setBackgroundColor:categoryColor];
     [self.categoryIcon setImage:categoryIcon];
     [self.categoryTitle setText:category.title];
-    [self.categoryTotal setText:[[categoryTotal.stringValue stringByAppendingString:@" UAH"] stringByReplacingOccurrencesOfString:@"." withString:@","]];
-    [self.expensesTable registerNib:[UINib nibWithNibName:@"ExpenseCellXIB" bundle:nil] forCellReuseIdentifier:@"expenseCell"];
+    [self.categoryTotal setText:[[categoryTotal.stringValue
+                                  stringByAppendingString:@" UAH"]
+                                    stringByReplacingOccurrencesOfString:@"." withString:@","]];
+    [self.expensesTable registerNib:[UINib nibWithNibName:@"ExpenseCellXIB"
+                                                   bundle:nil]
+             forCellReuseIdentifier:@"expenseCell"];
     [self.expensesTable setDelegate:self];
     [self.expensesTable setDataSource:self];
 

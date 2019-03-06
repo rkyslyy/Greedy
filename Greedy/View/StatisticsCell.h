@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface StatisticsCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIView*        iconView;
-@property (weak, nonatomic) IBOutlet UIImageView*   iconImageView;
-@property (weak, nonatomic) IBOutlet UILabel*       categoryName;
-@property (weak, nonatomic) IBOutlet UILabel*       categoryTotal;
+@property (weak, nonatomic) IBOutlet UIView				*iconView;
+@property (weak, nonatomic) IBOutlet UIImageView  *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel      *categoryName;
+@property (weak, nonatomic) IBOutlet UILabel      *categoryTotal;
 
-- (void) paintSelfWithColor:(UIColor*)color;
+- (void) paintSelfWithColor:(UIColor *)color;
 
 @end
 

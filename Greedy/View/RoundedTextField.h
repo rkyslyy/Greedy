@@ -13,9 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
 @interface RoundedTextField : UITextField
 
-@property (assign, nonatomic) IBInspectable BOOL        leftOffset;
-@property (assign, nonatomic) IBInspectable CGFloat     borderWidth;
-@property (assign, nonatomic) IBInspectable UIColor*    borderColor;
+@property (assign, nonatomic) IBInspectable UIColor *borderColor;
+@property (assign, nonatomic) IBInspectable BOOL    leftOffset;
+@property (assign, nonatomic) IBInspectable CGFloat borderWidth;
 
 @end
 

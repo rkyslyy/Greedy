@@ -13,19 +13,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExpensesVC (Tables) <UITableViewDelegate,
-                                UITableViewDataSource>
-
-
-// DataSource methods
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
-
+@interface ExpensesVC (Tables) <UITableViewDelegate, UITableViewDataSource>
 
 - (void) showCategories;
 - (void) showExpensesByDates;
-- (void) openDetailsWithCategory:(NSString*)categoryTitle;
+- (void) openDetailsWithCategory:(NSString *)categoryTitle;
 
 @end
 

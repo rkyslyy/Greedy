@@ -12,11 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CategoryDetailsVC (Collection) <UICollectionViewDelegate, UICollectionViewDataSource>
 
-- (void) setupIconsCollection;
-- (void) setupColorsCollection;
-- (void) showCollection;
-- (void) hideCollection;
-- (void) paintSelfWith:(UIColor*)color;
+- (void)setupIconsCollection;
+- (void)setupColorsCollection;
+- (void)showCollection;
+- (void)hideCollection;
+- (void)paintSelfWith:(UIColor *)color;
 
 
 @end

@@ -10,10 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExpenseDetailsVC (TextFields)  <UITextFieldDelegate>
+@interface ExpenseDetailsVC (TextFields) <UITextFieldDelegate>
 
-- (void) controlCost;
-- (void) controlPoint;
+- (void)controlCost;
+- (void)controlPoint;
 
 @end
 

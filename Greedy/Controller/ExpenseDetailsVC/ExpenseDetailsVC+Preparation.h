@@ -13,11 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ExpenseDetailsVC (Preparation)
 
-- (void) dismissSelf;
-- (void) setupFieldsAndButtons;
-- (void) hideMaskAndCardview;
-- (void) showMaskAndCardview;
-- (void) paintIfNecessary;
+- (void)dismissSelf;
+- (void)setupFieldsAndButtons;
+- (void)hideMaskAndCardview;
+- (void)showMaskAndCardview;
+- (void)paintIfNecessary;
 
 @end
 

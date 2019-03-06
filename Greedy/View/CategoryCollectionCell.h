@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 IB_DESIGNABLE
 @interface CategoryCollectionCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet RoundedView*   icon;
-@property (weak, nonatomic) IBOutlet UILabel*       title;
+@property (weak, nonatomic) IBOutlet RoundedView *icon;
+@property (weak, nonatomic) IBOutlet UILabel     *title;
 
 @end
 

@@ -285,13 +285,13 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clothes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsd-Xi-f0L">
-                                                    <rect key="frame" x="73" y="19.333333333333332" width="205" height="21.999999999999996"/>
+                                                    <rect key="frame" x="73" y="19.333333333333332" width="244" height="21.999999999999996"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                                     <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BLZ-Az-JqH">
-                                                    <rect key="frame" x="300" y="15" width="75" height="31"/>
+                                                    <rect key="frame" x="339" y="15" width="75" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="K4R-v4-vVy"/>
                                                         <constraint firstAttribute="height" constant="31" id="RXG-IA-3B6"/>
@@ -348,7 +348,7 @@
                         <outlet property="expenseNameView" destination="YSj-sm-Re4" id="XPo-hV-Sl8"/>
                         <outlet property="showCategoriesButton" destination="QHA-E0-drD" id="GQm-JE-CVU"/>
                         <outlet property="showExpensesByDatesButton" destination="GzH-Dl-er5" id="amn-U7-dKv"/>
-                        <segue destination="5uk-7M-AfK" kind="presentation" identifier="mySegue" animates="NO" modalPresentationStyle="overFullScreen" id="SvP-u0-bKn"/>
+                        <segue destination="5uk-7M-AfK" kind="presentation" identifier="toExpDetails" animates="NO" modalPresentationStyle="overFullScreen" id="SvP-u0-bKn"/>
                         <segue destination="oEg-Bd-AdI" kind="show" identifier="CategoryExpensesVC" id="HdQ-9N-Sio"/>
                         <segue destination="qjR-J7-cof" kind="presentation" identifier="editCategory" animates="NO" modalPresentationStyle="overFullScreen" id="bcx-xh-nmi"/>
                     </connections>
@@ -466,7 +466,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2300 UAH/42%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UH8-nM-TtO">
-                                                    <rect key="frame" x="239" y="19.666666666666668" width="116" height="22.000000000000004"/>
+                                                    <rect key="frame" x="278" y="19.666666666666668" width="116" height="22.000000000000004"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -475,7 +475,7 @@
                                             <constraints>
                                                 <constraint firstItem="xfS-19-eKI" firstAttribute="top" secondItem="c9g-Me-HWz" secondAttribute="top" constant="15" id="8OO-Zk-Fun"/>
                                                 <constraint firstItem="cXc-9m-u7z" firstAttribute="leading" secondItem="xfS-19-eKI" secondAttribute="trailing" constant="22" id="CJz-FP-lDH"/>
-                                                <constraint firstItem="UH8-nM-TtO" firstAttribute="leading" relation="lessThanOrEqual" secondItem="cXc-9m-u7z" secondAttribute="trailing" constant="109.5" id="LHT-2W-pex"/>
+                                                <constraint firstItem="UH8-nM-TtO" firstAttribute="leading" secondItem="cXc-9m-u7z" secondAttribute="trailing" priority="250" constant="109.5" id="LHT-2W-pex"/>
                                                 <constraint firstAttribute="trailing" secondItem="UH8-nM-TtO" secondAttribute="trailing" constant="20" id="WBy-oz-Y5W"/>
                                                 <constraint firstItem="cXc-9m-u7z" firstAttribute="centerY" secondItem="xfS-19-eKI" secondAttribute="centerY" id="e15-Xq-HqS"/>
                                                 <constraint firstAttribute="bottom" secondItem="xfS-19-eKI" secondAttribute="bottom" constant="15" id="k0b-vD-36h"/>
@@ -776,7 +776,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense title" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iaS-z1-3rY" customClass="RoundedLabel">
-                                                    <rect key="frame" x="14.999999999999993" y="10" width="120.33333333333331" height="35"/>
+                                                    <rect key="frame" x="15" y="10" width="140" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="sjh-Z4-x9y"/>
                                                     </constraints>
@@ -790,13 +790,13 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0v-aM-KwW">
-                                                    <rect key="frame" x="150.33333333333334" y="19.333333333333336" width="74.333333333333343" height="16.333333333333336"/>
+                                                    <rect key="frame" x="170" y="19.333333333333336" width="74.333333333333314" height="16.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense cost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVT-aU-7ad">
-                                                    <rect key="frame" x="287.66666666666669" y="19.333333333333336" width="72.333333333333314" height="16.333333333333336"/>
+                                                    <rect key="frame" x="326.66666666666669" y="19.333333333333336" width="72.333333333333314" height="16.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -850,7 +850,7 @@
                         <outlet property="headerView" destination="Ahu-vN-T26" id="cB7-sL-nnG"/>
                         <outlet property="iconHeightConstraint" destination="RQh-Xx-Bkg" id="iFV-t0-hxi"/>
                         <outlet property="iconWidthConstraint" destination="TJu-Yp-iOY" id="ISc-J3-plr"/>
-                        <segue destination="5uk-7M-AfK" kind="presentation" identifier="mySegue" animates="NO" modalPresentationStyle="overFullScreen" id="oKS-SD-UTG"/>
+                        <segue destination="5uk-7M-AfK" kind="presentation" identifier="toExpDetails" animates="NO" modalPresentationStyle="overFullScreen" id="oKS-SD-UTG"/>
                         <segue destination="qjR-J7-cof" kind="presentation" identifier="editCategory" animates="NO" modalPresentationStyle="overFullScreen" id="0Xx-OJ-vAi"/>
                     </connections>
                 </viewController>

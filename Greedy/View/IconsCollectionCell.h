@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface IconsCollectionCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIView*        iconView;
-@property (weak, nonatomic) IBOutlet UIImageView*   iconImage;
+@property (weak, nonatomic) IBOutlet UIView        	*iconView;
+@property (weak, nonatomic) IBOutlet UIImageView   	*iconImage;
 
 @end
 

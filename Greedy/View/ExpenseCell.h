@@ -14,9 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ExpenseCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel*   title;
-@property (weak, nonatomic) IBOutlet UILabel*   date;
-@property (weak, nonatomic) IBOutlet UILabel*   cost;
+@property (weak, nonatomic) IBOutlet UILabel	*title;
+@property (weak, nonatomic) IBOutlet UILabel	*date;
+@property (weak, nonatomic) IBOutlet UILabel	*cost;
 
 - (void) paintSelfFor:(Category*)category;
 

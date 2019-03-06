@@ -11,13 +11,13 @@
 @implementation RoundedLabel
 
 - (void)drawRect:(CGRect)rect {
-    [self.layer setMasksToBounds:true];
-    [self.layer setCornerRadius:self.frame.size.height / 2];
-    [super drawRect:rect];
+  [self.layer setMasksToBounds:true];
+  [self.layer setCornerRadius:self.frame.size.height / 2];
+  [super drawRect:rect];
 }
 
 - (void)setBorderWidth:(CGFloat)borderWidth {
-    [self.layer setBorderWidth:borderWidth];
+  [self.layer setBorderWidth:borderWidth];
 }
 
 @end

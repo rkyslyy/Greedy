@@ -11,15 +11,15 @@
 @implementation RoundedView
 
 - (void)drawRect:(CGRect)rect {
-    [self.layer setMasksToBounds:true];
-    if (!self.manualCornerRadius) {
-        [self.layer setCornerRadius:self.frame.size.height / 2];
-        [super drawRect:rect];
-    }
+  [self.layer setMasksToBounds:true];
+  if (!self.manualCornerRadius) {
+    [self.layer setCornerRadius:self.frame.size.height / 2];
+    [super drawRect:rect];
+  }
 }
 
 - (void)setCornerRadius:(CGFloat)cornerRadius {
-    [self.layer setCornerRadius:cornerRadius];
+  [self.layer setCornerRadius:cornerRadius];
 }
 
 @end

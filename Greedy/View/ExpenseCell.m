@@ -11,11 +11,11 @@
 @implementation ExpenseCell
 
 - (void)paintSelfFor:(Category *)category {
-    UIColor * color = [[ColorsManager getAllColors] objectAtIndex:category.colorIndex];
-    [self.title.layer setBorderColor:color.CGColor];
-    [self.title setTextColor:color];
-    [self.date setTextColor:color];
-    [self.cost setTextColor:color];
+  UIColor *color = [[ColorsManager getAllColors] objectAtIndex:category.colorIndex];
+  [self.title.layer setBorderColor:color.CGColor];
+  [self.title setTextColor:color];
+  [self.date setTextColor:color];
+  [self.cost setTextColor:color];
 }
 
 @end

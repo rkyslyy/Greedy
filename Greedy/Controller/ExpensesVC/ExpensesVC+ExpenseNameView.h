@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ExpensesVC (ExpenseNameView)
 
-- (void) beginEditingExpenseName;
-- (void) createDarkMask;
-- (void) dismissDarkMask;
-- (void) moveExpenseNameViewUp;
-- (void) moveExpenseNameViewDown;
-- (void) endEditingExpenseName;
+- (void)beginEditingExpenseName;
+- (void)createDarkMask;
+- (void)dismissDarkMask;
+- (void)moveExpenseNameViewUp;
+- (void)moveExpenseNameViewDown;
+- (void)endEditingExpenseName;
 
 @end
 

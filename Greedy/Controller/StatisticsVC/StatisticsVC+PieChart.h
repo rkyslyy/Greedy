@@ -10,8 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface StatisticsVC (PieChart) <XYPieChartDelegate,
-                                    XYPieChartDataSource>
+@interface StatisticsVC (PieChart) <XYPieChartDelegate, XYPieChartDataSource>
 
 @end
 

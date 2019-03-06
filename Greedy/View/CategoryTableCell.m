@@ -12,24 +12,28 @@
 @implementation CategoryTableCell
 
 - (void)setupButton {
-    [self.plusButton addTarget:self action:@selector(openDetailsInParent) forControlEvents:UIControlEventTouchUpInside];
+  [self.plusButton addTarget:self
+                      action:@selector(openDetailsInParent)
+            forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) openDetailsInParent {
-    [UIView transitionWithView:self.plusButton.imageView
-                      duration:0.15f
-                       options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^{
-                        [self.plusButton setImage:[UIImage imageNamed:@"active_plus"] forState:UIControlStateNormal];
-                    } completion:^(BOOL finished){
-                        [UIView transitionWithView:self.plusButton.imageView
-                                          duration:0.15f
-                                           options:UIViewAnimationOptionTransitionCrossDissolve
-                                        animations:^{
-                                            [self.plusButton setImage:[UIImage imageNamed:@"plus"] forState:UIControlStateNormal];
-                                        } completion:^(BOOL finished){}];
-                    }];
-    [self.parent openDetailsWithCategory:self.category];
+  [UIView transitionWithView:self.plusButton.imageView
+                    duration:0.15f
+                     options:UIViewAnimationOptionTransitionCrossDissolve
+                  animations:^{
+                    [self.plusButton setImage:[UIImage imageNamed:@"active_plus"]
+                                     forState:UIControlStateNormal];
+                  } completion:^(BOOL finished){
+                    [UIView transitionWithView:self.plusButton.imageView
+                                      duration:0.15f
+                                       options:UIViewAnimationOptionTransitionCrossDissolve
+                                    animations:^{
+                                      [self.plusButton setImage:[UIImage imageNamed:@"plus"]
+                                                       forState:UIControlStateNormal];
+                                    } completion:^(BOOL finished){}];
+                  }];
+  [self.parent openDetailsWithCategory:self.category];
 }
 
 @end

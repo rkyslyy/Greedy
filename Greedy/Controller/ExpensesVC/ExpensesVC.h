@@ -18,38 +18,28 @@
 
 @interface ExpensesVC : UIViewController <UITextFieldDelegate>
 
-// Toggle tables buttons outlets
-@property (weak, nonatomic) IBOutlet UIButton*              showCategoriesButton;
-@property (weak, nonatomic) IBOutlet UIButton*              showExpensesByDatesButton;
-
-// Tables outlets
-@property (weak, nonatomic) IBOutlet UITableView*           categoriesTable;
-@property (strong, nonatomic)        UITableView*           expensesByDatesTable;
-
-// ExpenseNameView outlets
-@property (strong, nonatomic)        UIView*                expenseNameMask;
-@property (weak, nonatomic) IBOutlet UIView*                expenseNameView;
-@property (weak, nonatomic) IBOutlet UITextField*           expenseNameTextField;
-@property (weak, nonatomic) IBOutlet UIButton*              expenseNameAddButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint*    expenseNameBottomConstraint;
-
-// ExpenseDetailsView outlets
-@property (strong, nonatomic)        UIView*                expenseDetailsMask;
-@property (strong, nonatomic)        ExpensesDetails*       expenseDetailsView;
-
-// CategoryExpensesView outlets
-@property (strong, nonatomic)        CategoryExpenses*      categoryExpensesView;
-
-@property (assign, nonatomic)        BOOL                   keyBoardShown;
-@property (assign, nonatomic)        BOOL                   shaking;
-@property (strong, nonatomic)        NSString*              selectedCategory;
-
-@property (strong, nonatomic) UIRefreshControl*             refreshControl;
-@property (strong, nonatomic) UIView* _Nullable             noCategoriesLabel;
-@property (strong, nonatomic) UIView* _Nullable             noExpensesLabel;
+// Outlets
+@property (weak, nonatomic) IBOutlet    UIButton           *showCategoriesButton;
+@property (weak, nonatomic) IBOutlet    UIButton           *showExpensesByDatesButton;
+@property (weak, nonatomic) IBOutlet    UIButton           *expenseNameAddButton;
+@property (weak, nonatomic) IBOutlet    UITableView        *categoriesTable;
+@property (weak, nonatomic) IBOutlet    UIView             *expenseNameView;
+@property (weak, nonatomic) IBOutlet    UITextField        *expenseNameTextField;
+@property (weak, nonatomic) IBOutlet    NSLayoutConstraint *expenseNameBottomConstraint;
+//
+@property (strong, nonatomic, nullable) UIView             *noCategoriesLabel;
+@property (strong, nonatomic, nullable) UIView             *noExpensesLabel;
+@property (strong, nonatomic)           UIView             *expenseNameMask;
+@property (strong, nonatomic)           UIView             *expenseDetailsMask;
+@property (strong, nonatomic)           UITableView        *expensesByDatesTable;
+@property (strong, nonatomic)           ExpensesDetails    *expenseDetailsView;
+@property (strong, nonatomic)           CategoryExpenses   *categoryExpensesView;
+@property (strong, nonatomic)           NSString           *selectedCategory;
+@property (strong, nonatomic)           UIRefreshControl   *refreshControl;
+@property (assign, nonatomic)           BOOL               keyBoardShown;
+@property (assign, nonatomic)           BOOL               shaking;
 
 - (void)createNewCategory;
-
 
 @end
 

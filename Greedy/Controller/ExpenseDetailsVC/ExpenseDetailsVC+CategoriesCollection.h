@@ -12,11 +12,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExpenseDetailsVC (CategoriesCollection) <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ExpenseDetailsVC (CategoriesCollection) <
+  UICollectionViewDelegate,
+  UICollectionViewDataSource
+>
 
-- (void) showCategoriesCollection;
-- (void) hideCategoriesCollection;
-- (void) paintDetailsViewWithColor:(UIColor *)color;
+- (void)showCategoriesCollection;
+- (void)hideCategoriesCollection;
+- (void)paintDetailsViewWithColor:(UIColor *)color;
 
 @end
 
