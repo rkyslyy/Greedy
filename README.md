@@ -2,7 +2,7 @@
 Simple expenses manager written in Objective C.  
   
 ### YouTube demo video:  
-  [![IMAGE ALT TEXT HERE](https://github.com/rkyslyy/Greedy/blob/master/screenshots/thumbnail.png)](https://youtu.be/PK72MTeSUEo)  
+  [![IMAGE ALT TEXT HERE](https://github.com/rkyslyy/Greedy/blob/master/screenshots/thumbnail.png)](https://youtu.be/4fe44e-pSt4)  
     
   ### Screenshots:
   
