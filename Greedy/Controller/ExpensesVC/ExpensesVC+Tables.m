@@ -24,7 +24,9 @@
     cell.category = category.title;
     cell.parent = self;
     UIFont *font = cell.categoryTitle.font;
-    if (self.view.frame.size.width < 375) [cell.categoryTitle setFont:[font fontWithSize:14]];
+    if (self.view.frame.size.width < 375) {
+      [cell.categoryTitle setFont:[font fontWithSize:14]];
+    }
     [cell setupButton];
     return cell;
   } else {
@@ -52,12 +54,16 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  if (tableView == self.expensesByDatesTable) return [[ExpensesManager getExpensesDates] count];
+  if (tableView == self.expensesByDatesTable) {
+    return [[ExpensesManager getExpensesDates] count];
+  }
   return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  if (tableView == self.categoriesTable) return [[CategoriesManager getAllCategories] count];
+  if (tableView == self.categoriesTable) {
+    return [[CategoriesManager getAllCategories] count];
+  }
   NSArray <NSDate *> *dates = [ExpensesManager getExpensesDates];
   return [[ExpensesManager getAllExpensesBy:[dates objectAtIndex:section]] count];
 }
@@ -84,8 +90,9 @@
   if ([date isEqualToString:[NSDateFormatter
                              localizedStringFromDate:[NSDate.date dateByAddingTimeInterval:-86400.0]
                                                         dateStyle:NSDateFormatterMediumStyle
-                                                        timeStyle:NSDateFormatterNoStyle]])
+                             timeStyle:NSDateFormatterNoStyle]]) {
     date = @"Yesterday";
+  }
   UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                 0,
                                                                 self.expensesByDatesTable.frame.size.width,
@@ -93,7 +100,9 @@
   UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerView.frame];
   NSMutableAttributedString *headerText = [[NSMutableAttributedString alloc] initWithString:date];
   UIFont *avenir = [UIFont fontWithName:@"Avenir" size:15];
-  if (self.view.frame.size.width < 375) avenir = [UIFont fontWithName:@"Avenir" size:14];
+  if (self.view.frame.size.width < 375) {
+    avenir = [UIFont fontWithName:@"Avenir" size:14];
+  }
   [headerText addAttribute:NSFontAttributeName value:avenir range:[date rangeOfString:date]];
   [headerText addAttribute:NSForegroundColorAttributeName
                      value:UIColor.darkGrayColor
@@ -107,7 +116,9 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-  if (tableView != self.expensesByDatesTable) return nil;
+  if (tableView != self.expensesByDatesTable) {
+    return nil;
+  }
   UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                 0,
                                                                 self.view.frame.size.width,
@@ -135,7 +146,9 @@
   NSMutableAttributedString *footerText = [[NSMutableAttributedString alloc]
                                            initWithString:totalString];
   UIFont *avenir = [UIFont fontWithName:@"Avenir" size:15];
-  if (self.view.frame.size.width < 375) avenir = [UIFont fontWithName:@"Avenir" size:14];
+  if (self.view.frame.size.width < 375) {
+    avenir = [UIFont fontWithName:@"Avenir" size:14];
+  }
   [footerText addAttribute:NSFontAttributeName
                      value:avenir
                      range:[totalString
@@ -150,19 +163,17 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-  if (tableView == self.expensesByDatesTable) return 30;
+  if (tableView == self.expensesByDatesTable) {
+    return 30;
+  }
   if (tableView == self.categoriesTable) {
-    if (![[CategoriesManager getAllCategories] count])
-      return 60;
-    else
-      return 0;
+    return [[CategoriesManager getAllCategories] count] ? 0 : 60;
   }
   return 10;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-  if (tableView == self.expensesByDatesTable) return 50;
-  return 0;
+  return tableView == self.expensesByDatesTable ? 50 : 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -189,11 +200,11 @@
       Expense *expense = sender;
       details.selectedExpense = expense;
       details.tableToReload = self.expensesByDatesTable;
-      details.needDarkenStatusBar = true;
+      details.needDarkenStatusBar = YES;
     } else {
       Category *category = sender;
       details.selectedCategory = category;
-      details.needDarkenStatusBar = true;
+      details.needDarkenStatusBar = YES;
     }
   } else if ([segue.destinationViewController isKindOfClass:CategoryExpensesVC.class]) {
     CategoryExpensesVC *categoryExpenses = segue.destinationViewController;
@@ -207,7 +218,9 @@
 }
 
 - (void)showCategories {
-  if (!self.categoriesTable.isHidden) return;
+  if (!self.categoriesTable.isHidden) {
+    return;
+  }
   [self.noExpensesLabel removeFromSuperview];
   [self setNoExpensesLabel:nil];
   if (![[CategoriesManager getAllCategories] count]) {
@@ -226,15 +239,15 @@
   [self.showExpensesByDatesButton setBackgroundColor:UIColor.whiteColor];
   [self.showExpensesByDatesButton setTitleColor:textColor forState:UIControlStateNormal];
   [self.showExpensesByDatesButton.layer setBorderWidth:1.f];
-
   [self.expensesByDatesTable removeFromSuperview];
   self.expensesByDatesTable = nil;
   [self.categoriesTable setHidden:false];
 }
 
 - (void)showExpensesByDates {
-  if (self.expensesByDatesTable)
+  if (self.expensesByDatesTable) {
     return;
+  }
   [self.noCategoriesLabel removeFromSuperview];
   [self setNoCategoriesLabel:nil];
   UIColor *backgroundColor = self.showCategoriesButton.backgroundColor;
@@ -245,9 +258,7 @@
   [self.showCategoriesButton setBackgroundColor:UIColor.whiteColor];
   [self.showCategoriesButton setTitleColor:textColor forState:UIControlStateNormal];
   [self.showCategoriesButton.layer setBorderWidth:1.f];
-
   [self.categoriesTable setHidden:true];
-
   [self createExpensesByDatesTable];
   if (![[ExpensesManager getExpensesDates] count]) {
     self.noExpensesLabel = [[NSBundle.mainBundle loadNibNamed:@"NoExpensesLabelXIB"

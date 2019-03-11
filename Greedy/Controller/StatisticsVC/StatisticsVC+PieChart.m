@@ -33,7 +33,9 @@
 }
 
 - (void)pieChart:(XYPieChart *)pieChart didSelectSliceAtIndex:(NSUInteger)index {
-  if (index == self.selectedSliceIndex) return;
+  if (index == self.selectedSliceIndex) {
+    return;
+  }
   if (self.selectedSliceIndex == -1) {
     [UIView animateWithDuration:0.2f animations:^{
       [self.categoryName setAlpha:1.f];
@@ -49,7 +51,9 @@
 }
 
 - (void)pieChart:(XYPieChart *)pieChart didDeselectSliceAtIndex:(NSUInteger)index {
-  if (self.categories.count < 2) return;
+  if (self.categories.count < 2) {
+    return;
+  }
   if (index == self.selectedSliceIndex) {
     [UIView animateWithDuration:0.2f animations:^{
       [self.categoryName setAlpha:0.f];

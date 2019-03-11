@@ -20,41 +20,50 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.categoriesTable.delegate = self;
-  self.categoriesTable.dataSource = self;
-  self.expenseNameTextField.delegate = self;
-  self.categoriesTable.layer.zPosition = 0.1f;
-  self.expenseNameView.layer.zPosition = 0.3f;
-  [self.showExpensesByDatesButton addTarget:self
+  _categoriesTable.delegate = self;
+  _categoriesTable.dataSource = self;
+  _expenseNameTextField.delegate = self;
+  _categoriesTable.layer.zPosition = 0.1f;
+  _expenseNameView.layer.zPosition = 0.3f;
+  [_showExpensesByDatesButton addTarget:self
                                      action:@selector(showExpensesByDates)
                            forControlEvents:UIControlEventTouchUpInside];
-  [self.showCategoriesButton addTarget:self
+  [_showCategoriesButton addTarget:self
                                 action:@selector(showCategories)
                       forControlEvents:UIControlEventTouchUpInside];
-  [self.expenseNameAddButton addTarget:self
+  [_expenseNameAddButton addTarget:self
                                 action:@selector(beginEditingDetails)
                       forControlEvents:UIControlEventTouchUpInside];
   if (self.view.frame.size.width < 375) {
-    UIFont *font = self.expenseNameTextField.font;
-    [self.expenseNameTextField setFont:[font fontWithSize:14]];
-    font = self.showCategoriesButton.titleLabel.font;
-    [self.showCategoriesButton.titleLabel setFont:[font fontWithSize:14]];
-    font = self.showExpensesByDatesButton.titleLabel.font;
-    [self.showExpensesByDatesButton.titleLabel setFont:[font fontWithSize:14]];
+    UIFont *font = _expenseNameTextField.font;
+    [_expenseNameTextField setFont:[font fontWithSize:14]];
+    font = _showCategoriesButton.titleLabel.font;
+    [_showCategoriesButton.titleLabel setFont:[font fontWithSize:14]];
+    font = _showExpensesByDatesButton.titleLabel.font;
+    [_showExpensesByDatesButton.titleLabel setFont:[font fontWithSize:14]];
   }
-  self.refreshControl = [[UIRefreshControl alloc] init];
-  self.refreshControl.backgroundColor = UIColor.clearColor;
-  self.refreshControl.tintColor = UIColor.clearColor;
+  [self setupRefreshControl];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [_categoriesTable reloadData];
+}
+
+- (void)setupRefreshControl {
+  _refreshControl = [[UIRefreshControl alloc] init];
+  _refreshControl.backgroundColor = UIColor.clearColor;
+  _refreshControl.tintColor = UIColor.clearColor;
   if ([[CategoriesManager getAllCategories] count]) {
     UIView *refreshView = [[NSBundle.mainBundle loadNibNamed:@"AddNewCategoryXIB"
                                                        owner:self
                                                      options:nil] objectAtIndex:0];
-    refreshView.frame = self.refreshControl.bounds;
-    [self.refreshControl addSubview:refreshView];
+    refreshView.frame = _refreshControl.bounds;
+    [_refreshControl addSubview:refreshView];
   }
-  [self.refreshControl addTarget:self action:@selector(createNewCategory)
+  [_refreshControl addTarget:self
+                          action:@selector(createNewCategory)
                 forControlEvents:UIControlEventValueChanged];
-  [self.categoriesTable addSubview:self.refreshControl];
+  [_categoriesTable addSubview:_refreshControl];
 }
 
 - (void)createNewCategory {
@@ -65,7 +74,7 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"OK"
                                               style:UIAlertActionStyleDefault
                                             handler:nil]];
-    [self.refreshControl endRefreshing];
+    [_refreshControl endRefreshing];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
                                  (int64_t)(0.2 * NSEC_PER_SEC)),
                    dispatch_get_main_queue(), ^{
@@ -74,7 +83,7 @@
     return;
   }
   [self performSegueWithIdentifier:@"editCategory" sender:nil];
-  [self.refreshControl endRefreshing];
+  [_refreshControl endRefreshing];
 }
 
 - (void)beginEditingDetails {
@@ -88,9 +97,10 @@
     [self presentViewController:alert animated:true completion:nil];
     return;
   }
-  if (self.expenseNameMask)
+  if (_expenseNameMask) {
     [self endEditingExpenseName];
-  [self.categoriesTable.refreshControl endRefreshing];
+  }
+  [_categoriesTable.refreshControl endRefreshing];
   [self performSegueWithIdentifier:@"toExpDetails" sender:nil];
 }
 
@@ -98,7 +108,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
   if (![[CategoriesManager getAllCategories] count]) {
-    [self.expenseNameTextField resignFirstResponder];
+    [_expenseNameTextField resignFirstResponder];
     UIAlertController *alert = [[UIAlertController alloc] init];
     [alert setMessage:@"Create at least one category to add an expense"];
     [alert setTitle:@"No expenses categories"];
@@ -108,16 +118,13 @@
     [self presentViewController:alert animated:true completion:nil];
     return;
   }
-  if (self.keyBoardShown)
+  if (_keyBoardShown) {
     return;
+  }
   [self setKeyBoardShown:true];
-  if (textField == self.expenseNameTextField)
+  if (textField == _expenseNameTextField) {
     [self beginEditingExpenseName];
+  }
 }
-
-- (void)viewWillAppear:(BOOL)animated {
-  [_categoriesTable reloadData];
-}
-
 
 @end

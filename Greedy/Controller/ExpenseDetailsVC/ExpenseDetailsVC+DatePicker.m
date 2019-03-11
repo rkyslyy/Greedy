@@ -12,7 +12,9 @@
 @implementation ExpenseDetailsVC (DatePicker)
 
 - (void)showDatePicker {
-  if (self.pickingCategory || self.keyboardShown) [self hideKeyboardAndMoveDown:nil];
+  if (self.pickingCategory || self.keyboardShown) {
+    [self hideKeyboardAndMoveDown:nil];
+  }
   [self createDatePicker];
   [self createDoneWithDateButton];
   [self animateStuff];

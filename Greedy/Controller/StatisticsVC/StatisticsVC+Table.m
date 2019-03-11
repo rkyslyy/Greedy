@@ -25,13 +25,15 @@
   else {
     categoryTotal = [ExpensesManager getTodayCostOf:category];
   }
-  NSString* totalString = [[[NSNumber numberWithFloat:categoryTotal]
+  NSString *totalString = [[[NSNumber numberWithFloat:categoryTotal]
                             stringValue] stringByAppendingString:@" UAH / "];
   float percents = ((categoryTotal / self.total) * 100);
   NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
   [fmt setPositiveFormat:@"0.##"];
   NSString *stringPercents = [fmt stringFromNumber:[NSNumber numberWithFloat:percents]];
-  if (stringPercents.length > 3) stringPercents = [stringPercents substringToIndex:4];
+  if (stringPercents.length > 3) {
+    stringPercents = [stringPercents substringToIndex:4];
+  }
   stringPercents = [stringPercents stringByAppendingString:@"%"];
   NSMutableAttributedString *stringPercentsAttr = [[NSMutableAttributedString alloc]
                                                    initWithString:[totalString

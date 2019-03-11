@@ -34,7 +34,6 @@
                               options:nil];
   [self.contentView setFrame:self.bounds];
   [self addSubview:self.contentView];
-
   [self.backButton addTarget:self
                       action:@selector(dismissSelf:)
             forControlEvents:UIControlEventTouchUpInside];

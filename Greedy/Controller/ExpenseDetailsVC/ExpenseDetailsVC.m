@@ -25,8 +25,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [self hideMaskAndCardview];
-  if (![_expenseTitle isEqualToString:@""])
-    [self.titleTextField setText:_expenseTitle];
+  if (![_expenseTitle isEqualToString:@""] && !_selectedExpense) {
+    [_titleTextField setText:_expenseTitle];
+  }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -35,23 +36,23 @@
 
 - (void) mutateFontsIfNecessary {
   if (self.view.frame.size.width < 375) {
-    UIFont *font = self.titleTextField.font;
-    [self.titleTextField setFont:[font fontWithSize:14]];
-    font = self.dateButton.titleLabel.font;
-    [self.dateButton.titleLabel setFont:[font fontWithSize:14]];
-    font = self.costTextField.font;
-    [self.costTextField setFont:[font fontWithSize:14]];
-    font = self.pickCategoryButton.titleLabel.font;
-    [self.pickCategoryButton.titleLabel setFont:[font fontWithSize:14]];
+    UIFont *font = _titleTextField.font;
+    [_titleTextField setFont:[font fontWithSize:14]];
+    font = _dateButton.titleLabel.font;
+    [_dateButton.titleLabel setFont:[font fontWithSize:14]];
+    font = _costTextField.font;
+    [_costTextField setFont:[font fontWithSize:14]];
+    font = _pickCategoryButton.titleLabel.font;
+    [_pickCategoryButton.titleLabel setFont:[font fontWithSize:14]];
   } else if (self.view.frame.size.width > 375) {
-    UIFont *font = self.titleTextField.font;
-    [self.titleTextField setFont:[font fontWithSize:18]];
-    font = self.dateButton.titleLabel.font;
-    [self.dateButton.titleLabel setFont:[font fontWithSize:18]];
-    font = self.costTextField.font;
-    [self.costTextField setFont:[font fontWithSize:18]];
-    font = self.pickCategoryButton.titleLabel.font;
-    [self.pickCategoryButton.titleLabel setFont:[font fontWithSize:18]];
+    UIFont *font = _titleTextField.font;
+    [_titleTextField setFont:[font fontWithSize:18]];
+    font = _dateButton.titleLabel.font;
+    [_dateButton.titleLabel setFont:[font fontWithSize:18]];
+    font = _costTextField.font;
+    [_costTextField setFont:[font fontWithSize:18]];
+    font = _pickCategoryButton.titleLabel.font;
+    [_pickCategoryButton.titleLabel setFont:[font fontWithSize:18]];
   }
 }
 

@@ -13,8 +13,12 @@
 @implementation ExpenseDetailsVC (TextFields)
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-  if (self.keyboardShown) return;
-  if (self.pickingCategory) [self hideCategoriesCollection];
+  if (self.keyboardShown) {
+    return;
+  }
+  if (self.pickingCategory) {
+    [self hideCategoriesCollection];
+  }
   [self setKeyboardShown:true];
   [UIView animateWithDuration:0.2 animations:^{
     [self makeCardViewTaller];
@@ -23,7 +27,9 @@
 }
 
 - (void) controlCost {
-  if (self.costTextField.text.length == 0) return;
+  if (self.costTextField.text.length == 0) {
+    return;
+  }
   UITextField *textField = self.costTextField;
   if (textField.text.length > 10) {
     textField.text = [textField.text substringToIndex:textField.text.length - 1];
@@ -45,9 +51,13 @@
 }
 
 - (void) controlPoint {
-  if (self.costTextField.text.length == 0) return;
+  if (self.costTextField.text.length == 0) {
+    return;
+  }
   UITextField *textField = self.costTextField;
-  if ([textField.text floatValue] == 0) return [textField setText:@""];
+  if ([textField.text floatValue] == 0) {
+    return [textField setText:@""];
+  }
   NSString *lastSymbol = [textField.text substringFromIndex:textField.text.length - 1];
   if ([lastSymbol isEqualToString:@"."]) {
     textField.text = [textField.text substringToIndex:textField.text.length - 1];

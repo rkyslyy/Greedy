@@ -15,20 +15,26 @@
 @implementation ExpenseDetailsVC (Preparation)
 
 - (void) dismissSelf {
-  if (self.keyboardShown)
+  if (self.keyboardShown) {
     return [self hideKeyboardAndMoveDown:nil];
-  if (self.pickingCategory)
+  }
+  if (self.pickingCategory) {
     return [self hideCategoriesCollection];
+  }
   if (self.selectedExpense) {
     NSMutableArray <UIView *> *viewsToShake = [NSMutableArray array];
-    if (self.titleTextField.text.length == 0) [viewsToShake addObject:self.titleTextField];
+    if (self.titleTextField.text.length == 0) {
+      [viewsToShake addObject:self.titleTextField];
+    }
     if (self.costTextField.text.length == 0 || [self.costTextField.text floatValue] == 0) {
       [viewsToShake addObject:self.costTextField];
     }
     if ([self.pickCategoryButton.titleLabel.text isEqualToString:@"Pick category"]) {
       [viewsToShake addObject:self.pickCategoryButton];
     }
-    if (viewsToShake.count) return [self shake:viewsToShake];
+    if (viewsToShake.count) {
+      return [self shake:viewsToShake];
+    }
     NSDateFormatter *dF = [[NSDateFormatter alloc] init];
     [dF setDateFormat:@"MMM dd, yyyy"];
     [dF setLocale:NSLocale.currentLocale];
@@ -40,7 +46,9 @@
     AppDelegate *delegate = (AppDelegate *)UIApplication.sharedApplication.delegate;
     [delegate saveContext];
   }
-  if (self.tableToReload) [self.tableToReload reloadData];
+  if (self.tableToReload) {
+    [self.tableToReload reloadData];
+  }
   [self.textFieldToClear setText:@""];
   [UIView animateWithDuration:0.2f animations:^{
     [self.blurredMask setAlpha:0.f];
@@ -68,7 +76,6 @@
   [self.costTextField addTarget:self
                          action:@selector(controlPoint)
                forControlEvents:UIControlEventEditingDidEnd];
-
   NSDate *today = [NSDate date];
   NSString *todayString = [NSDateFormatter localizedStringFromDate:today
                                                          dateStyle:NSDateFormatterMediumStyle
@@ -114,20 +121,24 @@
 
 - (void) commitChanges {
   if (!self.selectedExpense) {
-    NSMutableArray <UIView*>* viewsToShake = [NSMutableArray array];
-    if (self.titleTextField.text.length == 0)
+    NSMutableArray <UIView *> *viewsToShake = [NSMutableArray array];
+    if (self.titleTextField.text.length == 0) {
       [viewsToShake addObject:self.titleTextField];
-    if (self.costTextField.text.length == 0 || [self.costTextField.text floatValue] == 0)
+    }
+    if (self.costTextField.text.length == 0 || [self.costTextField.text floatValue] == 0) {
       [viewsToShake addObject:self.costTextField];
-    if ([self.pickCategoryButton.titleLabel.text isEqualToString:@"Pick category"])
+    }
+    if ([self.pickCategoryButton.titleLabel.text isEqualToString:@"Pick category"]) {
       [viewsToShake addObject:self.pickCategoryButton];
-    if (viewsToShake.count)
+    }
+    if (viewsToShake.count) {
       return [self shake:viewsToShake];
+    }
   }
-  NSDateFormatter * dF = [[NSDateFormatter alloc] init];
+  NSDateFormatter *dF = [[NSDateFormatter alloc] init];
   [dF setDateFormat:@"MMM dd, yyyy"];
   [dF setLocale:NSLocale.currentLocale];
-  NSDate * date = [dF dateFromString:self.dateButton.titleLabel.text];
+  NSDate *date = [dF dateFromString:self.dateButton.titleLabel.text];
   if (self.selectedExpense) {
     [ExpensesManager delete:self.selectedExpense];
     self.selectedExpense = nil;
@@ -141,9 +152,11 @@
 }
 
 - (void) shake:(NSMutableArray*)views {
-  if (self.shaking) return;
+  if (self.shaking) {
+    return;
+  }
   for (UIView *view in views) {
-    self.shaking = true;
+    self.shaking = YES;
     CGColorRef viewColor = view.layer.borderColor;
     [view.layer setBorderColor:[UIColor.redColor CGColor]];
     view.transform = CGAffineTransformMakeTranslation(20, 0);
@@ -160,7 +173,7 @@
                                        animations:^{
                                          view.layer.borderColor = viewColor;
                                        } completion:^(BOOL finished) {
-                                         self.shaking = false;
+                                         self.shaking = NO;
                                        }];
                      }];
   }
@@ -182,8 +195,8 @@
     [self.doneWithExpenseButton setImage:[UIImage imageNamed:@"rubbish-bin"]
                                 forState:UIControlStateNormal];
   } else if (self.selectedCategory) {
-    Category* category = self.selectedCategory;
-    UIColor* color = [[ColorsManager getAllColors] objectAtIndex:category.colorIndex];
+    Category *category = self.selectedCategory;
+    UIColor *color = [[ColorsManager getAllColors] objectAtIndex:category.colorIndex];
     [self paintDetailsViewWithColor:color];
     [self.pickCategoryButton setTitle:category.title forState:UIControlStateNormal];
   }
@@ -195,6 +208,5 @@
                                   substringToIndex:self.titleTextField.text.length - 1]];
   }
 }
-
 
 @end

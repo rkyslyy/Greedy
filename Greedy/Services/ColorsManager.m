@@ -33,25 +33,29 @@
 }
 
 + (NSArray<UIColor *> *)getFreeColors {
-  NSMutableArray <NSNumber*> * array = [NSMutableArray array];
-  NSArray <Category*>* categories = [CategoriesManager getAllCategories];
-  for (Category* category in categories)
+  NSMutableArray <NSNumber *> *array = [NSMutableArray array];
+  NSArray <Category *> *categories = [CategoriesManager getAllCategories];
+  for (Category *category in categories) {
     [array addObject:[NSNumber numberWithInteger:category.colorIndex]];
-  NSArray <UIColor*>* colors = [self getAllColors];
-  NSMutableArray <UIColor*>* freeColors = [NSMutableArray array];
+  }
+  NSArray <UIColor *> *colors = [self getAllColors];
+  NSMutableArray <UIColor *> *freeColors = [NSMutableArray array];
   for (NSInteger i = 0; i < colors.count; ++i) {
-    NSNumber* x = [NSNumber numberWithInteger:i];
-    if (![array containsObject:x]) [freeColors addObject:[colors objectAtIndex:i]];
+    NSNumber *x = [NSNumber numberWithInteger:i];
+    if (![array containsObject:x]) {
+      [freeColors addObject:[colors objectAtIndex:i]];
+    }
   }
   return freeColors;
 }
 
 + (NSArray<NSNumber *> *)getFreeColorsIndexes {
-  NSMutableArray <NSNumber*> * takenIndexes = [NSMutableArray array];
-  NSArray <Category*>* categories = [CategoriesManager getAllCategories];
-  for (Category* category in categories)
+  NSMutableArray <NSNumber *> *takenIndexes = [NSMutableArray array];
+  NSArray <Category *> *categories = [CategoriesManager getAllCategories];
+  for (Category *category in categories) {
     [takenIndexes addObject:[NSNumber numberWithInteger:category.colorIndex]];
-  NSMutableArray <NSNumber*>* freeIndexes = [NSMutableArray array];
+  }
+  NSMutableArray <NSNumber *> *freeIndexes = [NSMutableArray array];
   for (NSInteger i = 0; i < 18; ++i)
     if (![takenIndexes containsObject:[NSNumber numberWithInteger:i]]) {
       [freeIndexes addObject:[NSNumber numberWithInteger:i]];

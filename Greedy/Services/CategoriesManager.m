@@ -15,7 +15,6 @@
   AppDelegate *delegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
   NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
-
   NSArray <Category *> *categories = [context executeFetchRequest:request error:nil];
   return categories;
 }
@@ -71,7 +70,9 @@
 + (nullable Category *)getCategoryByName:(NSString *)name {
   NSArray <Category*> *allCategories = [self getAllCategories];
   for (Category *category in allCategories) {
-    if ([category.title isEqualToString:name]) return category;
+    if ([category.title isEqualToString:name]) {
+      return category;
+    }
   }
   return nil;
 }
@@ -91,7 +92,6 @@
                           andIcon:(NSInteger)iconIndex {
   AppDelegate *delegate = (AppDelegate *)UIApplication.sharedApplication.delegate;
   NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
-
   Category *newCategory = [[Category alloc] initWithContext:context];
   newCategory.title = title;
   NSArray <UIColor *> *colors = [ColorsManager getAllColors];
@@ -103,9 +103,7 @@
 + (void)delete:(Category *)category {
   AppDelegate *delegate = (AppDelegate*)UIApplication.sharedApplication.delegate;
   NSManagedObjectContext *context = delegate.persistentContainer.viewContext;
-
   [context deleteObject:category];
-
   NSArray <Expense *> *expensesOfDeletedCategory = [ExpensesManager
                                                       getAllExpensesOfCategory:category.title];
   for (Expense *expense in expensesOfDeletedCategory)

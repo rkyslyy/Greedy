@@ -21,10 +21,19 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTX-8F-rjO" customClass="RoundedView">
                         <rect key="frame" x="20" y="0.0" width="30" height="30"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lHC-dl-aHc">
+                                <rect key="frame" x="5" y="5" width="20" height="20"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="lHC-dl-aHc" secondAttribute="trailing" constant="5" id="2C9-ke-FZL"/>
                             <constraint firstAttribute="height" constant="30" id="4PT-eB-boc"/>
+                            <constraint firstItem="lHC-dl-aHc" firstAttribute="leading" secondItem="uTX-8F-rjO" secondAttribute="leading" constant="5" id="CX0-Wx-zXn"/>
                             <constraint firstAttribute="width" constant="30" id="bAc-QK-Ybu"/>
+                            <constraint firstItem="lHC-dl-aHc" firstAttribute="top" secondItem="uTX-8F-rjO" secondAttribute="top" constant="5" id="lFT-6Q-p0r"/>
+                            <constraint firstAttribute="bottom" secondItem="lHC-dl-aHc" secondAttribute="bottom" constant="5" id="xAo-qN-dsa"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Health" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ld9-4U-gcD">
@@ -46,7 +55,8 @@
             <viewLayoutGuide key="safeArea" id="fmz-Tm-rm9"/>
             <size key="customSize" width="70" height="50"/>
             <connections>
-                <outlet property="icon" destination="uTX-8F-rjO" id="yGY-aW-nGr"/>
+                <outlet property="colorCircle" destination="uTX-8F-rjO" id="yGY-aW-nGr"/>
+                <outlet property="icon" destination="lHC-dl-aHc" id="pco-Gt-gVB"/>
                 <outlet property="title" destination="Ld9-4U-gcD" id="7df-NJ-meS"/>
             </connections>
             <point key="canvasLocation" x="172.80000000000001" y="206.89655172413794"/>

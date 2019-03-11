@@ -68,13 +68,17 @@
 }
 
 - (void) beginEditingExpenseName {
-  if (self.expenseNameMask) return;
+  if (self.expenseNameMask) {
+    return;
+  }
   [self createDarkMask];
   [self moveExpenseNameViewUp];
 }
 
 - (void) endEditingExpenseName {
-  if (!self.expenseNameMask) return;
+  if (!self.expenseNameMask) {
+    return;
+  }
   [self.view endEditing:true];
   [self setKeyBoardShown:false];
   [self dismissDarkMask];

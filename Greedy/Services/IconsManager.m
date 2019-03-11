@@ -33,7 +33,9 @@
   NSMutableArray <UIImage *> *freeIcons = [NSMutableArray array];
   for (NSInteger i = 0; i < 35; ++i) {
     NSNumber *x = [NSNumber numberWithInteger:i];
-    if (![takenIndexes containsObject:x]) [freeIcons addObject:[icons objectAtIndex:i]];
+    if (![takenIndexes containsObject:x]) {
+      [freeIcons addObject:[icons objectAtIndex:i]];
+    }
   }
   return freeIcons;
 }
@@ -41,8 +43,9 @@
 + (NSArray<NSNumber *> *)getFreeIconsIndexes {
   NSMutableArray <NSNumber*> * takenIndexes = [NSMutableArray array];
   NSArray <Category*>* categories = [CategoriesManager getAllCategories];
-  for (Category* category in categories)
+  for (Category* category in categories) {
     [takenIndexes addObject:[NSNumber numberWithInteger:category.iconIndex]];
+  }
   NSMutableArray <NSNumber*>* freeIndexes = [NSMutableArray array];
   for (NSInteger i = 0; i < 35; ++i)
     if (![takenIndexes containsObject:[NSNumber numberWithInteger:i]]) {

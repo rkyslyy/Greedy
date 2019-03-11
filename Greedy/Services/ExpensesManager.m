@@ -45,27 +45,31 @@
 }
 
 + (NSArray<NSDate *> *)getExpensesDates {
-  NSArray <Expense*> *expenses = [self getAllExpenses];
+  NSArray <Expense *> *expenses = [self getAllExpenses];
   NSMutableArray <NSDate *> *dates = [NSMutableArray array];
   for (Expense *expense in expenses) {
-    if (![dates containsObject:expense.date]) [dates addObject:expense.date];
+    if (![dates containsObject:expense.date]) {
+      [dates addObject:expense.date];
+    }
   }
   [dates sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-    NSDate* one = obj1;
-    NSDate* two = obj2;
+    NSDate *one = obj1;
+    NSDate *two = obj2;
     return [one compare:two] != NSOrderedDescending;
   }];
   return dates;
 }
 
 + (NSArray<NSString *> *)getExpensesDatesStrings {
-  NSArray <NSDate*> *dates = [self getExpensesDates];
+  NSArray <NSDate *> *dates = [self getExpensesDates];
   NSMutableArray <NSString *> *datesStrings = [NSMutableArray array];
   for (NSDate *date in dates) {
     NSString *dateString = [NSDateFormatter localizedStringFromDate:date
                                                           dateStyle:NSDateFormatterMediumStyle
                                                           timeStyle:NSDateFormatterNoStyle];
-    if (![datesStrings containsObject:dateString]) [datesStrings addObject:dateString];
+    if (![datesStrings containsObject:dateString]) {
+      [datesStrings addObject:dateString];
+    }
   }
   return datesStrings;
 }
@@ -74,7 +78,9 @@
   float total = 0;
   NSArray <Expense *> *expenses = [self getAllExpenses];
   for (Expense *expense in expenses) {
-    if ([expense.date isEqualToDate:date]) total += expense.cost;
+    if ([expense.date isEqualToDate:date]) {
+      total += expense.cost;
+    }
   }
   return total;
 }
@@ -84,7 +90,9 @@
   float total = 0;
   NSArray <Expense *> *expenses = [self getAllExpenses];
   for (Expense *expense in expenses) {
-    if ([expense.date compare:monthBack] == NSOrderedDescending) total += expense.cost;
+    if ([expense.date compare:monthBack] == NSOrderedDescending) {
+      total += expense.cost;
+    }
   }
   return total;
 }
@@ -94,7 +102,9 @@
   float total = 0;
   NSArray <Expense *> *expenses = [self getAllExpensesOfCategory:category.title];
   for (Expense *expense in expenses) {
-    if ([expense.date compare:monthBack] == NSOrderedDescending) total += expense.cost;
+    if ([expense.date compare:monthBack] == NSOrderedDescending) {
+      total += expense.cost;
+    }
   }
   return total;
 }

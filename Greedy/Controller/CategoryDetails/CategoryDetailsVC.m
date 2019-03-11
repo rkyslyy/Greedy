@@ -26,19 +26,15 @@
   [_categoryName addTarget:self
                     action:@selector(controlLength)
           forControlEvents:UIControlEventEditingChanged];
-
   [_pickIconButton addTarget:self
                       action:@selector(setupIconsCollection)
             forControlEvents:UIControlEventTouchUpInside];
-
   [_pickColorButton addTarget:self
                        action:@selector(setupColorsCollection)
              forControlEvents:UIControlEventTouchUpInside];
-
   [_doneWithCategoryButton addTarget:self
                               action:@selector(commitChanges)
                     forControlEvents:UIControlEventTouchUpInside];
-
   [self mutateFontsIfNecessary];
 }
 
@@ -103,14 +99,26 @@
 }
 
 - (void)dismissSelf {
-  if (_keyboardShown) return [self hideKeyboardAndMoveDown:nil];
-  if (_pickingColor || _pickingIcon) return [self hideCollection];
+  if (_keyboardShown) {
+    return [self hideKeyboardAndMoveDown:nil];
+  }
+  if (_pickingColor || _pickingIcon) {
+    return [self hideCollection];
+  }
   if (!_categoryDeleted && _selectedCategory) {
     NSMutableArray <UIView *> *viewsToShake = [NSMutableArray array];
-    if (_categoryName.text.length == 0) [viewsToShake addObject:_categoryName];
-    if (!_iconSelected) [viewsToShake addObject:_iconLabel];
-    if (!_colorSelected) [viewsToShake addObject:_colorLabel];
-    if (viewsToShake.count) return [self shake:viewsToShake];
+    if (_categoryName.text.length == 0) {
+      [viewsToShake addObject:_categoryName];
+    }
+    if (!_iconSelected) {
+      [viewsToShake addObject:_iconLabel];
+    }
+    if (!_colorSelected) {
+      [viewsToShake addObject:_colorLabel];
+    }
+    if (viewsToShake.count) {
+      return [self shake:viewsToShake];
+    }
     _selectedCategory.title = _categoryName.text;
     _selectedCategory.colorIndex = _selectedColorIndex;
     _selectedCategory.iconIndex = _selectedIconIndex;
@@ -175,9 +183,15 @@
     if (_categoryName.text.length == 0 || [self categoryExists]) {
       [viewsToShake addObject:_categoryName];
     }
-    if (!_iconSelected) [viewsToShake addObject:_iconLabel];
-    if (!_colorSelected) [viewsToShake addObject:_colorLabel];
-    if (viewsToShake.count) return [self shake:viewsToShake];
+    if (!_iconSelected) {
+      [viewsToShake addObject:_iconLabel];
+    }
+    if (!_colorSelected) {
+      [viewsToShake addObject:_colorLabel];
+    }
+    if (viewsToShake.count) {
+      return [self shake:viewsToShake];
+    }
     [CategoriesManager createNewCategoryWithName:_categoryName.text
                                            color:_selectedColorIndex
                                          andIcon:_selectedIconIndex];
@@ -187,9 +201,11 @@
 }
 
 - (void) shake:(NSMutableArray*)views {
-  if (self.shaking) return;
+  if (self.shaking) {
+    return;
+  }
   for (UIView *view in views) {
-    self.shaking = true;
+    self.shaking = YES;
     UIColor *viewColor = [UIColor colorWithCGColor:view.layer.borderColor];
     [view.layer setBorderColor:[UIColor.redColor CGColor]];
     view.transform = CGAffineTransformMakeTranslation(20, 0);
@@ -206,7 +222,7 @@
                                        animations:^{
                                          view.layer.borderColor = viewColor.CGColor;
                                        } completion:^(BOOL finished) {
-                                         self.shaking = false;
+                                         self.shaking = NO;
                                        }];
                      }];
   }

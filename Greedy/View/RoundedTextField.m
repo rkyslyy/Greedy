@@ -18,8 +18,12 @@
 }
 
 - (void)setLeftOffset:(BOOL)leftOffset {
-  if (leftOffset) self.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 57, 0)];
-  else self.leftView = nil;
+  if (leftOffset) {
+    self.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 57, 0)];
+  }
+  else {
+    self.leftView = nil;
+  }
 }
 
 - (void)setBorderWidth:(CGFloat)borderWidth {

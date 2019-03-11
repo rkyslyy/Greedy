@@ -30,14 +30,17 @@
 - (void) hideKeyboardAndMoveDown:(nullable UITapGestureRecognizer*)tap {
   if (tap) {
     CGPoint tapLocation = [tap locationInView:self.pickColorButton];
-    if ([self.pickColorButton.layer containsPoint:tapLocation])
+    if ([self.pickColorButton.layer containsPoint:tapLocation]) {
       return;
+    }
     tapLocation = [tap locationInView:self.pickIconButton];
-    if ([self.pickIconButton.layer containsPoint:tapLocation])
+    if ([self.pickIconButton.layer containsPoint:tapLocation]) {
       return;
+    }
     tapLocation = [tap locationInView:self.collection];
-    if ([self.collection.layer containsPoint:tapLocation])
+    if ([self.collection.layer containsPoint:tapLocation]) {
       return;
+    }
   }
   if (self.keyboardShown) {
     [self.view endEditing:true];
